@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Blade::setRawTags ("{{","}}");
     }
 
     /**
@@ -23,6 +23,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+			'Illuminate\Contracts\Auth\Registrar',
+			'App\Services\Registrar'
+		);
+		\Blade::setRawTags('{{', '}}');
+		\Blade::setContentTags('{{{', '}}}');
+		\Blade::setEscapedContentTags('{{{', '}}}');
     }
 }
